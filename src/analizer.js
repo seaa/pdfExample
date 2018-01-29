@@ -1,8 +1,8 @@
 //
 // pdf.js example
-// Gets a pdf file and extracts color data from first page
+// Gets a pdf file and extracts color data from the first page
 //
-const COLORSCAP = 25;
+const COLORSCAP = 30;
 
 var analizer = {
   start: function() {
@@ -10,7 +10,7 @@ var analizer = {
       fileReader = new FileReader();
       fileReader.onload = function() {
         PDFJS.getDocument(fileReader.result).then(function getPdfHelloWorld(pdf) {
-          // Fetch the first page, and process
+          // Fetch the first page, and go process
           pdf.getPage(1).then(function getPageHelloWorld(page) {
             analizer.processPage(page);
           });
@@ -23,7 +23,7 @@ var analizer = {
   },
   
   processPage: function (page) {
-    var viewport = page.getViewport(1); // takes desired scale
+    var viewport = page.getViewport(1); // this takes the desired scale
     
     // Prepare canvas using PDF page dimensions
     var canvas = document.getElementById('canvas');
@@ -102,7 +102,7 @@ var analizer = {
   }
 };
 
-// set things up for when a file is loaded
+// set things up to run when a file is loaded
 PDFJS.disableWorker = true;
 document.getElementById('pdf').onchange = analizer.start;
 
